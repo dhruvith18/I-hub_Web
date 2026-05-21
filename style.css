@@ -310,20 +310,31 @@ input:checked+label {
     border-radius: 999px;
 }
 
+.nav-hamburger .dot {
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--text-color);
+    border-radius: 999px;
+}
+
+/* three horizontal dots, optically centered */
 .nav-hamburger .dot:nth-child(1) {
     top: 50%;
-    transform: translateX(-50%) translateY(-1px);
+    transform: translateX(calc(-50% - 6px)) translateY(-50%);
 }
 
 .nav-hamburger .dot:nth-child(2) {
     top: 50%;
-    transform: translateX(-50%) translateY(0px);
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .nav-hamburger .dot:nth-child(3) {
     top: 50%;
-    transform: translateX(-50%) translateY(1px);
+    transform: translateX(calc(-50% + 6px)) translateY(-50%);
 }
+
 
 
 .mobile-nav {

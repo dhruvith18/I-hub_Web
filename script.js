@@ -10,10 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let toastTimer;
 
     const emailJsConfig = {
-        publicKey: 'kvThRg1hhMTala8m8',
-        serviceId: 'service_d9jhl1j',
-        adminTemplateId: 'template_qa3vudj',
-        autoReplyTemplateId: 'template_4e1z4z5'
+        publicKey: 'TczcUeXApwGlQZB13',
+        serviceId: 'service_cqgca7g',
+        adminTemplateId: 'template_pr972id',
+        autoReplyTemplateId: 'template_7mehugg'
     };
 
 
