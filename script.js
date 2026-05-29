@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const templateParams = {
                 name: formData.get('name').trim(),
                 email: formData.get('email').trim(),
+                phoneNumber: (formData.get('phoneNumber') || '').toString().trim(),
+                visitors: (formData.get('visitors') || '').toString().trim(),
                 subject: formData.get('subject').trim(),
                 message: formData.get('message').trim()
             };
