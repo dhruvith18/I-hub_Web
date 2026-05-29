@@ -12,8 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailJsConfig = {
         publicKey: 'TczcUeXApwGlQZB13',
         serviceId: 'service_cqgca7g',
-        adminTemplateId: 'template_pr972id',
-        autoReplyTemplateId: 'template_7mehugg'
+        adminTemplateId: 'template_7mehugg',
+        autoReplyTemplateId: 'template_pr972id'
     };
 
 
@@ -111,7 +111,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 email: formData.get('email').trim(),
                 phoneNumber: (formData.get('phoneNumber') || '').toString().trim(),
                 visitors: (formData.get('visitors') || '').toString().trim(),
-                subject: formData.get('subject').trim(),
                 message: formData.get('message').trim()
             };
 
