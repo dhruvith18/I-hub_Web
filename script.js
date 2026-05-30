@@ -1,3 +1,11 @@
+import { db } from './firebase-config.js';
+
+import {
+    collection,
+    addDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
 document.addEventListener('DOMContentLoaded', () => {
     const themeInputs = document.querySelectorAll('input[name="theme"]');
     const themeToggle = document.getElementById('themeToggle');
@@ -114,16 +122,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: formData.get('message').trim()
             };
 
+            const firebaseData = {
+                name: templateParams.name,
+                email: templateParams.email,
+                phoneNumber: templateParams.phoneNumber,
+                visitors: templateParams.visitors,
+                message: templateParams.message,
+                createdAt: serverTimestamp()
+            };
+
             contactForm.classList.add('is-submitting');
             submitButton.disabled = true;
             let adminEmailSent = false;
 
             try {
+
+                await addDoc(
+                    collection(db, "Feedback"),
+                    firebaseData
+                );
+
                 await emailjs.send(
                     emailJsConfig.serviceId,
                     emailJsConfig.adminTemplateId,
                     templateParams
                 );
+
                 adminEmailSent = true;
 
                 await emailjs.send(
@@ -133,7 +157,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
 
                 contactForm.reset();
-                showFormStatus('Thank you. Your feedback has been sent successfully. A confirmation email will arrive shortly.', 'success');
+                showFormStatus(
+                    'Thank you. Your feedback has been sent successfully. A confirmation email will arrive shortly.',
+                    'success'
+                );
+
             } catch (error) {
                 const message = adminEmailSent
                     ? 'Your feedback was received, but the confirmation email could not be sent.'

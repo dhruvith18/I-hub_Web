@@ -20,6 +20,10 @@
     --accent: #a08ec3;
 } */
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -275,6 +279,12 @@ input:checked+label {
     transition: 0.3s;
     opacity: 0.8;
     white-space: nowrap;
+}
+
+.top-nav a.active,
+.mobile-nav a.active {
+    color: var(--accent);
+    opacity: 1;
 }
 
 .top-nav a:hover {
