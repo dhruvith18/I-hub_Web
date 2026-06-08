@@ -83,9 +83,23 @@ body {
     opacity: 0.55;
     color: var(--text-color);
     z-index: 9999;
-    pointer-events: none;
+    pointer-events: auto;
     letter-spacing: 0.2px;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Make developer link clickable when used */
+.page-credit .developers-link {
+    pointer-events: auto;
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    cursor: pointer;
+}
+
+.page-credit .developers-link:hover {
+    color: var(--accent);
+    opacity: 1;
 }
 
 /* Header Section */
