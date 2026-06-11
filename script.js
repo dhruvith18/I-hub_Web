@@ -1,11 +1,3 @@
-import { db } from './firebase-config.js';
-
-import {
-    collection,
-    addDoc,
-    serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-
 document.addEventListener('DOMContentLoaded', () => {
     const themeInputs = document.querySelectorAll('input[name="theme"]');
     const themeToggle = document.getElementById('themeToggle');
@@ -113,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             const submitButton = contactForm.querySelector('button[type="submit"]');
+            if (!submitButton) return;
+
             const formData = new FormData(contactForm);
             const templateParams = {
                 name: formData.get('name').trim(),
@@ -122,20 +116,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 message: formData.get('message').trim()
             };
 
-            const firebaseData = {
-                name: templateParams.name,
-                email: templateParams.email,
-                phoneNumber: templateParams.phoneNumber,
-                visitors: templateParams.visitors,
-                message: templateParams.message,
-                createdAt: serverTimestamp()
-            };
-
             contactForm.classList.add('is-submitting');
             submitButton.disabled = true;
             let adminEmailSent = false;
 
             try {
+                const [
+                    { db },
+                    { collection, addDoc, serverTimestamp }
+                ] = await Promise.all([
+                    import('./firebase-config.js'),
+                    import('https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js')
+                ]);
+
+                const firebaseData = {
+                    name: templateParams.name,
+                    email: templateParams.email,
+                    phoneNumber: templateParams.phoneNumber,
+                    visitors: templateParams.visitors,
+                    message: templateParams.message,
+                    createdAt: serverTimestamp()
+                };
 
                 await addDoc(
                     collection(db, "Feedback"),
